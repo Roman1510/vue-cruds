@@ -1,6 +1,6 @@
 <template lang="">
   <div>
-    <div class="card" v-for="faq in faqs" :key="faq._id">
+    <div class="card my-2" v-for="faq in faqs" :key="faq._id">
       <div class="card-image"></div>
       <div class="card-content">
         <div class="media">
