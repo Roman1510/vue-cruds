@@ -37,9 +37,11 @@ export default {
         console.log(response);
       }
     }
-    function getCurrentFAQ(){
+    async function getCurrentFAQ(){
       const {id} = route.params
-      console.log(id)
+      const response = await fetch(API_URL+'/'+id)
+      const json = await response.json()
+      faq.value = json
     }
     getCurrentFAQ()
     return {
