@@ -12,14 +12,11 @@
         <div class="content">
           {{ faq.answer }}
         </div>
-        <button
-          @click.prevent="deleteFAQ(faq._id)"
-          class="button is-danger"
-        >
+        <button @click.prevent="deleteFAQ(faq._id)" class="button is-danger">
           Delete
         </button>
         <button
-          @click.prevent="goToEdit(faq._id)"
+          @click.prevent="editFAQ(faq._id)"
           class="button is-warning mx-2"
         >
           Edit
@@ -30,14 +27,17 @@
 </template>
 <script>
 import { ref } from 'vue';
+import { useRouter, useRoute } from 'vue-router';
 
 export default {
   setup() {
+    const route = useRoute();
+    const router = useRouter();
     const faqs = ref([]);
     const API_URL = 'http://localhost:5000/api/v1/dbrequest/';
 
-    function goToEdit(id){
-      console.log('not implemented yet')
+    function editFAQ(_id) {
+      router.push(route.query.redirect || '/update/' + _id);
     }
 
     async function deleteFAQ(id) {
@@ -59,7 +59,7 @@ export default {
     return {
       faqs,
       deleteFAQ,
-      goToEdit
+      editFAQ,
     };
   },
 };

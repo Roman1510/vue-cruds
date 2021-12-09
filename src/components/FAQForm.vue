@@ -1,11 +1,11 @@
 <script>
 export default {
-  props: ['submitForm', 'faq']
+  props: ['submitForm', 'faq'],
 };
 </script>
 
 <template lang="">
-  <form @submit.prevent="submitForm">
+  <form>
     <div class="field">
       <label class="label">question</label>
       <div class="control">
@@ -32,7 +32,13 @@ export default {
       </div>
     </div>
     <div class="field">
-      <button type="submit" class="button is-success">Create</button>
+      <button
+        @click.prevent="submitForm"
+        type="submit"
+        class="button is-success"
+      >
+        Create
+      </button>
     </div>
   </form>
 </template>

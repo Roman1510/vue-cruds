@@ -11,12 +11,14 @@ export default {
   setup() {
     const route = useRoute();
     const router = useRouter();
+    const question = ref('');
+    const answer = ref('');
     const faq = ref({
-      question:'',
-      answer:''
-    })
+      question: '',
+      answer: '',
+    });
     const API_URL = 'http://localhost:5000/api/v1/dbrequest/';
-    async function createFAQ() {
+    async function updateFAQ() {
       const response = await fetch(API_URL, {
         method: 'POST',
         headers: {
@@ -35,16 +37,21 @@ export default {
         console.log(response);
       }
     }
+    function getCurrentFAQ(){
+      const {id} = route.params
+      console.log(id)
+    }
+    getCurrentFAQ()
     return {
       faq,
-      createFAQ,
+      updateFAQ,
     };
   },
 };
 </script>
 
 <template lang="">
-  <FAQForm :faq="faq" :submitForm="createFAQ" />
+  <FAQForm :faq="faq" :submitForm="updateFAQ" />
 </template>
 
 <style lang=""></style>

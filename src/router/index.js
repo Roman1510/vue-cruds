@@ -13,6 +13,12 @@ const routes = [
     // lazy loaded programmatic component
     component: () => import(/* webpackChunkName: "create" */ '../views/Create.vue'),
   },
+  {
+    path: '/update/:id',
+    name: 'update',
+    // lazy loaded programmatic component
+    component: () => import(/* webpackChunkName: "create" */ '../views/Update.vue'),
+  },
 ];
 
 const router = createRouter({
