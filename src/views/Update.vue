@@ -16,11 +16,13 @@ export default {
     const faq = ref({
       question: '',
       answer: '',
+      _id:''
     });
     const API_URL = 'http://localhost:5000/api/v1/dbrequest/';
     async function updateFAQ() {
-      const response = await fetch(API_URL, {
-        method: 'POST',
+      const {id} = route.params
+      const response = await fetch(API_URL+'/'+id, {
+        method: 'PUT',
         headers: {
           'content-type': 'application/json',
         },
