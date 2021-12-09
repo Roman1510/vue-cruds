@@ -11,7 +11,8 @@ export default {
   setup() {
     const route = useRoute();
     const router = useRouter();
-    const faq = ref({});
+    const question = ref('');
+    const answer = ref('');
     const API_URL = 'http://localhost:5000/api/v1/dbrequest/';
     async function createFAQ() {
       const response = await fetch(API_URL, {
@@ -20,8 +21,8 @@ export default {
           'content-type': 'application/json',
         },
         body: JSON.stringify({
-          question: faq.value.question,
-          answer: faq.value.answer,
+          question: question.value,
+          answer: answer.value,
         }),
       });
       const json = await response.json();
@@ -29,11 +30,14 @@ export default {
       if (response.ok) {
         router.push(redirectPath);
       } else {
-        console.log(response)
+        console.log(response);
       }
     }
     return {
-      faq,
+      faq: {
+        question,
+        answer,
+      },
       createFAQ,
     };
   },
@@ -41,7 +45,7 @@ export default {
 </script>
 
 <template lang="">
-  <FAQForm :faq.answer="faq" :submitForm="createFAQ" />
+  <FAQForm :faq="faq" :submitForm="createFAQ" />
 </template>
 
 <style lang=""></style>
