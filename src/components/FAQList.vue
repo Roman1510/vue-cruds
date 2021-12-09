@@ -4,17 +4,20 @@
       <div class="card-image"></div>
       <div class="card-content">
         <div class="media">
-          <div class="media-left">
-            <figure class="image is-48x48"></figure>
-          </div>
+          <div class="media-left"></div>
           <div class="media-content">
             <p class="title is-4">{{ faq.question }}</p>
           </div>
         </div>
-
         <div class="content">
           {{ faq.answer }}
         </div>
+        <button
+          @click.prevent="deleteFAQ(faq._id)"
+          class="button is-danger my-2"
+        >
+          Delete
+        </button>
       </div>
     </div>
   </div>
@@ -27,6 +30,17 @@ export default {
     const faqs = ref([]);
     const API_URL = 'http://localhost:5000/api/v1/dbrequest/';
 
+    async function deleteFAQ(id) {
+      const response = await fetch(`${API_URL}${id}`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      console.log(response);
+      getFAQS();
+    }
+
     async function getFAQS() {
       const response = await fetch(API_URL);
       const json = await response.json();
@@ -35,6 +49,7 @@ export default {
     getFAQS();
     return {
       faqs,
+      deleteFAQ,
     };
   },
 };
