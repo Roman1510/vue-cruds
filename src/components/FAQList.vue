@@ -14,9 +14,15 @@
         </div>
         <button
           @click.prevent="deleteFAQ(faq._id)"
-          class="button is-danger my-2"
+          class="button is-danger"
         >
           Delete
+        </button>
+        <button
+          @click.prevent="goToEdit(faq._id)"
+          class="button is-warning mx-2"
+        >
+          Edit
         </button>
       </div>
     </div>
@@ -30,6 +36,10 @@ export default {
     const faqs = ref([]);
     const API_URL = 'http://localhost:5000/api/v1/dbrequest/';
 
+    function goToEdit(id){
+      console.log('not implemented yet')
+    }
+
     async function deleteFAQ(id) {
       const response = await fetch(`${API_URL}${id}`, {
         method: 'DELETE',
@@ -37,7 +47,6 @@ export default {
           'Content-Type': 'application/json',
         },
       });
-      console.log(response);
       getFAQS();
     }
 
@@ -50,6 +59,7 @@ export default {
     return {
       faqs,
       deleteFAQ,
+      goToEdit
     };
   },
 };

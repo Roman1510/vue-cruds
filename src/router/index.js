@@ -9,7 +9,7 @@ const routes = [
   },
   {
     path: '/create',
-    name: 'Create',
+    name: 'create',
     // lazy loaded programmatic component
     component: () => import(/* webpackChunkName: "create" */ '../views/Create.vue'),
   },
